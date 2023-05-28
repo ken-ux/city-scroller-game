@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +22,11 @@ public class GameManager : MonoBehaviour
     // For keeping track of score
     private float score = 0;
     private PlayerController playerControllerScript;
+    public TextMeshProUGUI scoreText;
+
+    // For restarting the game
+    public TextMeshProUGUI gameOverText;
+    public Button restartButton;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +57,7 @@ public class GameManager : MonoBehaviour
                     score += Time.deltaTime * 2;
                 }
                 Debug.Log("Score = " + Mathf.RoundToInt(score));
+                scoreText.text = "Score: " + Mathf.RoundToInt(score);
             }
         }
     }
@@ -70,5 +79,9 @@ public class GameManager : MonoBehaviour
             spawnManager.GetComponent<SpawnManager>().enabled = true;
             isGameStarted = true;
         }
+    }
+
+    public void StartGame() {
+        SceneManager.LoadScene("Main", LoadSceneMode.Single);
     }
 }

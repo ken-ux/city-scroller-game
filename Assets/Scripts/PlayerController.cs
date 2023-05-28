@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
     private bool doubleJumped = false;
     public bool dash = false;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         Physics.gravity *= gravityModifier;
         playerAudio = GetComponent<AudioSource>();
+        gameManager = GameObject.FindAnyObjectByType<GameManager>();
     }
 
     // Update is called once per frame
@@ -82,6 +84,8 @@ public class PlayerController : MonoBehaviour
             explosionParticle.Play();
             dirtParticle.Stop();
             playerAudio.PlayOneShot(crashSound, 1.0f);
+            gameManager.restartButton.gameObject.SetActive(true);
+            gameManager.gameOverText.gameObject.SetActive(true);
         }
     }
 }
