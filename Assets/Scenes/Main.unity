@@ -497,9 +497,9 @@ RectTransform:
   m_Father: {fileID: 1788481806}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -511, y: 274}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 176, y: -76}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &554994474
@@ -1297,8 +1297,8 @@ MonoBehaviour:
   gravityModifier: 5
   isOnGround: 1
   gameOver: 0
-  explosionParticle: {fileID: 1573535370}
   dirtParticle: {fileID: 329791676}
+  explosionParticle: {fileID: 1573535370}
   jumpSound: {fileID: 8300000, guid: 08ab7053d586c458db3774d33c141a4b, type: 3}
   crashSound: {fileID: 8300000, guid: e7ee25a47d63b46cdaf65480d62b405c, type: 3}
   dash: 0
