@@ -13,7 +13,10 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Spawn obstacles after a delay at a specific rate
         InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
+
+        // Initialize PlayerController to tell when game is over
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
@@ -25,7 +28,10 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnObstacle()
     {
+        // Randomly pick obstacle to spawn
         int obstacleInt = Random.Range(0, obstaclePrefabs.Length);
+
+        // Spawn obstacle if game is not over
         if (playerControllerScript.gameOver == false)
         {
             GameObject obstaclePrefab = obstaclePrefabs[obstacleInt];

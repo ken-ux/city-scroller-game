@@ -17,6 +17,7 @@ public class RepeatBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Reset position when background moves half of its full width
         if (transform.position.x < startPos.x - repeatWidth)
         {
             transform.position = startPos;

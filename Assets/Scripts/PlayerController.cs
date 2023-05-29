@@ -4,29 +4,39 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // For making the player jump and animate
     private Rigidbody playerRb;
     private Animator playerAnim;
     public float jumpForce;
     public float gravityModifier;
+
+    // Limiting number of jumps or determining game over
     public bool isOnGround = true;
     public bool gameOver = false;
-    public ParticleSystem explosionParticle;
+    private bool doubleJumped = false;
+
+    // Particle and sound effects when running or obstacle is hit
     public ParticleSystem dirtParticle;
+    public ParticleSystem explosionParticle;
     public AudioClip jumpSound;
     public AudioClip crashSound;
+
+    // Music and determining dash mode
     private AudioSource playerAudio;
-    private bool doubleJumped = false;
     public bool dash = false;
     private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize components
         playerRb = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
-        Physics.gravity *= gravityModifier;
         playerAudio = GetComponent<AudioSource>();
         gameManager = GameObject.FindAnyObjectByType<GameManager>();
+
+        // Increase gravity for game
+        Physics.gravity *= gravityModifier;
     }
 
     // Update is called once per frame
@@ -69,12 +79,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Kick up dirt when running on ground
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
             dirtParticle.Play();
             doubleJumped = false;
         }
+        // End game if player hits obstacle
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
             gameOver = true;
